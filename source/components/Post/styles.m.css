@@ -1,0 +1,110 @@
+@import '../../theme/palette';
+
+.post {
+    background-color: var(--paletteColor2);
+    border: 1px solid var(--paletteColor10);
+    border-radius: 3px;
+    margin-top: 10px;
+    max-width: calc(100vw - 20px);
+    padding: 12px;
+    position: relative;
+    transition: box-shadow .3s ease;
+    width: 500px;
+    word-wrap: break-word;
+    & img {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+        transition: border 0.5s ease;
+        border: 1px solid var(--paletteColor5);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    & form {
+        width: 100%;
+        & input[type='submit'] {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 100px;
+            transition: background-color 0.2s ease-in;
+            padding: 3px 0;
+            border: 0;
+            border-radius: 7px;
+            outline: 0;
+            background-color: var(--paletteColor6);
+            color: var(--paletteColor2);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            appearance: button;
+            &:hover {
+                 background-color: color-mod(var(--paletteColor6) shade(20%));
+            }
+        }
+        & textarea {
+              width: 100%;
+              height: 80px;
+              margin-top: 7px;
+              transition: font-size 0.5s ease;
+              border: 0;
+              outline: 0;
+              font-size: 15px;
+              font-weight: 300;
+              resize: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            &::placeholder {
+                transition: color 0.4s ease-out;
+                color: var(--paletteColor5);
+            }
+            &:focus::placeholder {
+                color: var(--paletteColor5);
+            }
+            &:focus {
+                font-size: 24px;
+            }
+        }
+    }
+    & a,
+    & time {
+        position: absolute;
+        left: 60px;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    & time {
+          color: var(--paletteColor5);
+          font-size: 12px;
+          top: 35px;
+    }
+    & a {
+        color: var(--paletteColor7);
+        font-weight: 700;
+        top: 15px;
+    }
+    & p {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.4;
+        margin-top: 16px;
+    }
+    & .cross {
+        content: '';
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 10px;
+        height: 10px;
+        background-image: url('../../theme/assets/cross.png');
+        background-repeat: no-repeat;
+        cursor: pointer;
+        &:hover {
+            background-position: -13px 0;
+        }
+    }
+}
