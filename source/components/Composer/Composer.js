@@ -1,6 +1,6 @@
 // Core
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Instruments
 import styles from "./styles.m.css";
@@ -9,25 +9,25 @@ import styles from "./styles.m.css";
 import { withProfile } from "../HOC/withProfile";
 
 export class Composer extends Component {
-
     static propTypes = {
-        avatar: PropTypes.string.isRequired,
+        avatar:               PropTypes.string.isRequired,
         currentUserFirstName: PropTypes.string.isRequired,
-    }
+    };
 
     state = {
-        comment: '',
+        comment: "",
     };
 
     _handleFormSubmit = (e) => {
         e.preventDefault();
         this._submitComment();
-    }
+    };
 
     _updateComment = (e) => {
         const { value: comment } = e.target;
-        this.setState ({ comment });
-    }
+
+        this.setState({ comment });
+    };
 
     _submitComment = () => {
         const { comment } = this.state;
@@ -39,21 +39,21 @@ export class Composer extends Component {
         const { _createPostAsync } = this.props;
 
         _createPostAsync(comment);
-        this.setState ({ comment: '' });
-    }
+        this.setState({ comment: "" });
+    };
 
     _noCopyText = (e) => {
         e.preventDefault();
-    }
+    };
 
     _onSubmitCommentOnEnter = (e) => {
-        const enterKey = e.key === 'Enter';
+        const enterKey = e.key === "Enter";
 
         if (enterKey) {
             e.preventDefault();
             this._submitComment();
         }
-    }
+    };
 
     render () {
         const { comment } = this.state;
@@ -62,7 +62,7 @@ export class Composer extends Component {
         return (
             <section className = { styles.composer }>
                 <img src = { avatar } />
-                <form onSubmit = { this._handleFormSubmit } >
+                <form onSubmit = { this._handleFormSubmit }>
                     <textarea
                         placeholder = { `what is your mind ${currentUserFirstName}` }
                         value = { comment }

@@ -1,16 +1,12 @@
 // Core
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // Instruments
-import styles from './styles.m.css';
+import styles from "./styles.m.css";
 
 const Counter = ({ count }) => {
-    return (
-        <section className = { styles.counter }>
-            Post count: { count }
-        </section>
-    );
+    return <section className = { styles.counter }>Post count: {count}</section>;
 };
 
 Counter.ptopTypes = {

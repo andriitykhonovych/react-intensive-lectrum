@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { Component, createContext } from "react";
 
 const { Provider, Consumer } = createContext();
 
@@ -7,17 +7,10 @@ const withProfile = (Enhanceable) =>
         render () {
             return (
                 <Consumer>
-                    {
-                        (context) => <Enhanceable { ...context } { ...this.props } />
-                    }
+                    {(context) => <Enhanceable { ...context } { ...this.props } />}
                 </Consumer>
             );
         }
     };
 
-
-export {
-    Provider,
-    Consumer,
-    withProfile
-};
+export { Provider, Consumer, withProfile };

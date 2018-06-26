@@ -125,11 +125,11 @@ rules:
   no-label-var: 2
   no-restricted-globals: 2
   no-shadow-restricted-names: 2
-  no-shadow: 2
+#  no-shadow: 2
   no-undef-init: 2
   no-undef: 2
   no-undefined: 2
-  no-unused-vars: 2
+#  no-unused-vars: 2
   no-use-before-define: 2
   array-bracket-spacing: 2
   block-spacing: 2
@@ -276,11 +276,11 @@ rules:
                             ]
                           }
                    }]
-  react/sort-prop-types: [2, {
-                               "callbacksLast": true,
-                               "ignoreCase": true,
-                               "requiredFirst": true,
-                             }]
+#  react/sort-prop-types: [2, {
+#                               "callbacksLast": true,
+#                               "ignoreCase": true,
+#                               "requiredFirst": true,
+#                             }]
   react/style-prop-object: 2
   react/jsx-boolean-value: 2
   react/jsx-closing-bracket-location: [2, {"selfClosing": "line-aligned", nonEmpty: "after-props"}]
@@ -300,11 +300,11 @@ rules:
   react/jsx-no-target-blank: 2
   react/jsx-no-undef: 2
   react/jsx-pascal-case: 2
-  react/jsx-sort-props: [2, {
-                              "callbacksLast": true,
-                              "shorthandFirst": true,
-                              "ignoreCase": true
-                            }]
+#  react/jsx-sort-props: [2, {
+#                              "callbacksLast": true,
+#                              "shorthandFirst": true,
+#                              "ignoreCase": true
+#                            }]
   react/jsx-tag-spacing: [2, {
                                "closingSlash": "never",
                                "beforeSelfClosing": "always",
