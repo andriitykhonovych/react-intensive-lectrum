@@ -2,10 +2,10 @@
     "runner": "jest-runner",
     "displayName": "test:unit",
     "rootDir": "../",
-    "verbose": false,
+    "verbose": true,
     "notify": true,
     "bail": false,
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
         "<rootDir>/source/instruments/*.js",
         "<rootDir>/source/components/Counter/*.js",
