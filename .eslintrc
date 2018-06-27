@@ -86,7 +86,7 @@ rules:
   no-loop-func: 2
   no-magic-numbers: 0
   no-multi-spaces: [2, "exceptions": { "VariableDeclarator": true, "Property": true }]
-  key-spacing: [2, { "beforeColon": false, "afterColon": true, "align": "value" }]
+#  key-spacing: [2, { "beforeColon": false, "afterColon": true, "align": "value" }]
   no-multi-str: 2
   no-new-func: 2
   no-new-wrappers: 2
@@ -149,7 +149,7 @@ rules:
   func-names: [2, "never"]
   func-style: ["error", "declaration", { "allowArrowFunctions": true }]
   id-blacklist: 2
-  indent: [2, 4, {"SwitchCase": 1}]
+#  indent: [2, 4, {"SwitchCase": 1}]
   jsx-quotes: [2, "prefer-single"]
   keyword-spacing: 2
   linebreak-style: 0

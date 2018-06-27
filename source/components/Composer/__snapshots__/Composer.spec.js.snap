@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Composer component: should render valid marcup depending on passed props snapshot  1`] = `"<img src=\\"https://www.avatar.com\\"><form><textarea placeholder=\\"what is your mind Andrey\\"></textarea><input type=\\"submit\\" value=\\"Post\\"></form>"`;
