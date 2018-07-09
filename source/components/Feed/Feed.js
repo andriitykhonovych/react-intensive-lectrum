@@ -13,6 +13,12 @@ import { api } from "../../REST/api";
 import { GROUP_ID } from "../../REST/config";
 import { socket } from "../../socket/init";
 
+// Store
+import dispatcher from '../../flux/dispatcher';
+import postStore from '../../flux/store';
+import { fetchPosts } from '../../flux/actions/posts';
+import { startSpinning, stopSpinning } from '../../flux/actions/ui';
+
 // Components
 import Composer from "../../components/Composer/Composer";
 import Post from "../../components/Post/Post";
@@ -21,11 +27,13 @@ import Counter from "../../components/Counter/Counter";
 import Catcher from "../../components/Catcher/Catcher";
 import Spinner from "../Spinner/Spinner";
 import Postman from "../Postman/Postman";
+import { withStore } from '../HOC'
 
+@withStore
 export default class Feed extends Component {
     state = {
-        posts:      [],
-        isSpinning: false,
+        posts:      postStore.getPosts(),
+        isSpinning: postStore.getSpinningStatus(),
         online:     false,
         isApper:    true,
     };
@@ -33,10 +41,13 @@ export default class Feed extends Component {
     componentDidMount () {
         const { currentUserFirstName, currentUserLastName } = this.props;
 
+        // ----- flux start
+        postStore.subscribe(this._onChange);
+        // ------ flux end
+
         this._getPostsAcync();
 
         // ----- Socket start
-
         socket.on("connect", () => {
             this.setState({
                 online: true,
@@ -89,19 +100,39 @@ export default class Feed extends Component {
                 }));
             }
         });
+        // ----- Socket end
     }
 
-    // ----- Socket end
+    componentWillMount () {
+        // ----- flux start
+        postStore.unsubscribe(this._onChange);
+        // ----- flux end
+    }
 
+    // ------ Flux methods start
+    _onChange = () => {
+        console.log('feed store change');
+        const { isSpinning } = postStore.getStore();
+
+        this.setState ({
+            isSpinning
+        });
+    };
+
+    // ------ Methods start
     _getPostsAcync = async () => {
         try {
             this._setPostsFetchingState(true);
             const posts = await api.fetchPosts();
 
-            this.setState({
-                posts,
-                isSpinning: false,
-            });
+            // this.setState({
+            //     posts,
+            // });
+
+            // ----- flux start
+            dispatcher.dispatch(fetchPosts(posts));
+            // ----- flux end
+
         } catch ({ message }) {
             console.error(message);
         } finally {
@@ -158,13 +189,18 @@ export default class Feed extends Component {
     };
 
     _setPostsFetchingState = (isSpinning) => {
-        this.setState({
-            isSpinning,
-        });
+        // this.setState({
+        //     isSpinning,
+        // });
+
+        // ---- flux start
+        const spinner = isSpinning ? startSpinning() : stopSpinning();
+
+        dispatcher.dispatch(spinner);
+        // ---- flux stop
     };
 
     // ----- Animations start
-
     _animateComposerAppear = (composer) => {
         gsap.fromTo(
             composer,
@@ -195,10 +231,10 @@ export default class Feed extends Component {
         gsap.fromTo(postman, 1, { opacity: 1, x: 0 }, { opacity: 0, x: 400 });
     };
 
-    // ----- Animation end
-
     render () {
-        const { posts: userPosts, isSpinning, online, isApper } = this.state;
+        const { isSpinning, online, isApper } = this.state;
+
+        const { posts: userPosts } = this.props;
 
         const posts = userPosts.map((post) => (
             <CSSTransition
